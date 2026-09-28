@@ -88,4 +88,14 @@ public final class DruidDataSourceProvider {
     public static DataSource asDataSource() {
         return shared();
     }
+
+    /**
+     * Closes an ad-hoc data source (one built via {@link #createFromClasspath})
+     * without throwing. Safe to pass {@code null}.
+     */
+    public static void closeSharedQuietly(DruidDataSource ds) {
+        if (ds != null) {
+            ds.close();
+        }
+    }
 }
